@@ -4,12 +4,12 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    $site = "https://sistemavendas.epizy.com/feed/"; // recebe a uri de retorno 
+    $redirect_uri = "https://sistemavendas.epizy.com/feed/"; // recebe a uri de retorno 
 
     require_once('feedInstagram.php');
     require_once('oauthInstagram.php');
 
-    $oauthInstagram = new oauthInstagram('787297432245507');
+    $oauthInstagram = new OauthInstagram('client_id', 'client_secret', $redirect_uri);
 
     if(isset($_GET['code'])){
         $request_token = $oauthInstagram->getAccessToken($_GET['code']);
@@ -36,7 +36,7 @@
     } else {
 
         echo '<a href="'.$oauthInstagram->getCode().'">
-                    Login insta
+                    Login com seu insta
                 </a>';
     }
 ?>
